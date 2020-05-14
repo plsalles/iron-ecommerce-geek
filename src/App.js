@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import actionFigures from './assets/images';
+import { Row, Col } from 'antd';
 
 import ProductCard from './components/ProductCard/ProductCard';
+import FormSearchComponents from './components/FormSearchProducts/FormSearchProducts';
 
 const products = [
   {
@@ -33,6 +35,8 @@ const products = [
 
 class App extends Component {
   state = {
+    products,
+    displayedProducts: products,
     chart: {
       products: [],
     }
@@ -52,13 +56,12 @@ class App extends Component {
     }, () => {
       console.log(this.state.chart)
     });
-
   };
 
   displayProducts = () => {
-    const productsArray = products.map((product, index) => {
+    const productsArray = this.state.displayedProducts.map((product, index) => {
       return (
-        <div>
+        <Col span={6}>
           <ProductCard
             key={`product-card-${index + 1}`}
             productName={product.name}
@@ -67,17 +70,38 @@ class App extends Component {
             productStock={product.stock}
             addMethod={this.addToChart}
           />
-        </div>
+        </Col>
       );
     });
 
-    return productsArray;
+    return (
+      <Row gutter={24}>
+        {productsArray}
+      </Row>
+    );
   };
+
+  filterProducts = searchValue => {
+    const filteredProducts = this.state.products.filter(product => (
+      product.name.toLowerCase().includes(searchValue.toLowerCase())
+    ));
+
+    this.setState({ displayedProducts: filteredProducts })
+  }
 
   render() {
     return (
       <div>
-        <h1>Hello</h1>
+        <Row gutter={24}>
+          <Col span={6}>
+          </Col>
+          <Col span={12}>
+            <FormSearchComponents filterMethod={this.filterProducts} />
+          </Col>
+          <Col span={6}>
+          </Col>
+        </Row>
+
         {this.displayProducts()}
       </div>
     );
