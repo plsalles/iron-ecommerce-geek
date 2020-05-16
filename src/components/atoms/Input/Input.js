@@ -18,15 +18,13 @@ class Input extends Component {
     const { placeholder, type, name } = this.props;
 
     return (
-      <div>
-        <InputAntD
-          placeholder={placeholder}
-          type={type}
-          value={this.state.value}
-          name={name}
-          onChange={(e) => this.onChange(e)}
-        />
-      </div>
+      <InputAntD
+        placeholder={placeholder}
+        type={type}
+        value={this.state.value}
+        name={name}
+        onChange={(e) => this.onChange(e)}
+      />
     );
   }
 }
