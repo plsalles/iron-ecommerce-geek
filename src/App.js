@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import actionFigures from './assets/images';
-import { Row, Col } from 'antd';
-
-import ProductCard from './components/ProductCard/ProductCard';
-import FormSearchComponents from './components/FormSearchProducts/FormSearchProducts';
+import { Home, SecondPage } from './pages';
 
 const products = [
   {
@@ -58,29 +55,6 @@ class App extends Component {
     });
   };
 
-  displayProducts = () => {
-    const productsArray = this.state.displayedProducts.map((product, index) => {
-      return (
-        <Col span={6}>
-          <ProductCard
-            key={`product-card-${index + 1}`}
-            productName={product.name}
-            productImage={product.image}
-            productPrice={product.price}
-            productStock={product.stock}
-            addMethod={this.addToChart}
-          />
-        </Col>
-      );
-    });
-
-    return (
-      <Row gutter={24}>
-        {productsArray}
-      </Row>
-    );
-  };
-
   filterProducts = searchValue => {
     const filteredProducts = this.state.products.filter(product => (
       product.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -92,17 +66,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Row gutter={24}>
-          <Col span={6}>
-          </Col>
-          <Col span={12}>
-            <FormSearchComponents filterMethod={this.filterProducts} />
-          </Col>
-          <Col span={6}>
-          </Col>
-        </Row>
+        <Home products={this.state.displayedProducts} addToChart={this.addToChart} filterMethod={this.filterProducts} />
 
-        {this.displayProducts()}
+        <SecondPage />
       </div>
     );
   }
