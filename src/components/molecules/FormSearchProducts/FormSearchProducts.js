@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../Input/Input';
+import { Input } from '../../atoms';
 
 const FormSearchProducts = ({ placeholder, type, name, filterMethod }) => {
   return (
