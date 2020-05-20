@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'antd';
+import { Col, Row, Skeleton } from 'antd';
 import { ProductCard } from '../../molecules';
 
 const HomeContent = ({ products, addToChart }) => {
@@ -18,12 +18,13 @@ const HomeContent = ({ products, addToChart }) => {
         </Col>
       );
     });
+    console.log('HOME CONTENT MONTADO!!!', products.length)
 
-    return (
+    return products.length === 0 ? <Skeleton active /> : (
       <Row gutter={24}>
         {productsArray}
       </Row>
-    );
+    )
   };
 
   return (
