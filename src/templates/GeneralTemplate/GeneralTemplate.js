@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Menu } from 'antd';
+import { Layout, Link } from './GeneralTemplate.style';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -21,7 +22,13 @@ class GeneralTemplate extends React.Component {
     });
   };
 
+  componentDidMount() {
+    console.log('DID MOUNT DO GENERAL TEMPLATE CHAMADO!!')
+  }
+
   render() {
+    console.log('RENDER DO GENERAL TEMPLATE CHAMADO!!')
+
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -44,6 +51,8 @@ class GeneralTemplate extends React.Component {
               className: 'trigger',
               onClick: this.toggle,
             })}
+            <Link to="/">Home</Link>
+            <Link to="/new-route">New Route</Link>
           </Header>
           <Content
             className="site-layout-background"

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import actionFigures from './assets/images';
 import { Home, SecondPage } from './pages';
@@ -31,13 +32,29 @@ const products = [
 ];
 
 class App extends Component {
-  state = {
-    products,
-    displayedProducts: products,
-    chart: {
+  constructor() {
+    super();
+    this.state = {
       products: [],
-    }
-  };
+      displayedProducts: [],
+      chart: {
+        products: [],
+      },
+      loggedUser: true,
+    };
+
+    console.log('CONSTRUCTOR DO APP CHAMADO');
+  }
+
+  async componentDidMount() {
+    console.log('DID MOUNT DO APP CHAMADO!!!')
+    setTimeout(() => {
+      this.setState({
+        products,
+        displayedProducts: products,
+      })
+    }, 3000)
+  }
 
   addToChart = (productQuantity, productName, productPrice, productImage) => {
     const selectedProduct = {
@@ -64,12 +81,20 @@ class App extends Component {
   }
 
   render() {
+    console.log('RENDER DO APP CHAMADO!!')
     return (
-      <div>
-        <Home products={this.state.displayedProducts} addToChart={this.addToChart} filterMethod={this.filterProducts} />
-
-        <SecondPage />
-      </div>
+      <Switch>
+        <Route
+          exact
+          path="/teste/:id"
+          render={props => <Home {...props} products={this.state.displayedProducts} addToChart={this.addToChart} filterMethod={this.filterProducts} />}
+        />
+        <Route
+          exact
+          path="/new-route"
+          render={props => <SecondPage {...props} loggedUser={this.state.loggedUser} />}
+        />
+      </Switch>
     );
   }
 }
