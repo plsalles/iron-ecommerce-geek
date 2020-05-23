@@ -9,10 +9,10 @@ const HomeContent = ({ products, addToChart }) => {
         <Col span={6}>
           <ProductCard
             key={`product-card-${index + 1}`}
-            productName={product.name}
-            productImage={product.image}
-            productPrice={product.price}
-            productStock={product.stock}
+            productName={product.productName}
+            productImage={product.productImages[0]}
+            productPrice={product.productPrice}
+            productStock={product.productStock}
             addMethod={addToChart}
           />
         </Col>
@@ -26,7 +26,8 @@ const HomeContent = ({ products, addToChart }) => {
       </Row>
     )
   };
-
+  
+  console.log(products)
   return (
     <div>
       {displayProducts(products)}

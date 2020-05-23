@@ -1,35 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import actionFigures from './assets/images';
+import ApiService from './api/service';
 import { Home, SecondPage } from './pages';
-
-const products = [
-  {
-    name: 'Iron Man Action Figure',
-    price: 200,
-    stock: 5,
-    image: actionFigures.ironMan,
-  },
-  {
-    name: 'Captain Amarica Action Figure',
-    price: 180,
-    stock: 0,
-    image: actionFigures.captainAmerica,
-  },
-  {
-    name: 'Hulk Action Figure',
-    price: 200,
-    stock: 2,
-    image: actionFigures.hulk,
-  },
-  {
-    name: 'Spider Man Action Figure',
-    price: 130,
-    stock: 6,
-    image: actionFigures.spiderMan,
-  },
-];
 
 class App extends Component {
   constructor() {
@@ -42,18 +15,15 @@ class App extends Component {
       },
       loggedUser: true,
     };
-
-    console.log('CONSTRUCTOR DO APP CHAMADO');
   }
 
   async componentDidMount() {
-    console.log('DID MOUNT DO APP CHAMADO!!!')
-    setTimeout(() => {
-      this.setState({
-        products,
-        displayedProducts: products,
-      })
-    }, 3000)
+    const products = await ApiService.listProducts();
+
+    this.setState({
+      products,
+      displayedProducts: products,
+    });
   }
 
   addToChart = (productQuantity, productName, productPrice, productImage) => {
@@ -74,7 +44,7 @@ class App extends Component {
 
   filterProducts = searchValue => {
     const filteredProducts = this.state.products.filter(product => (
-      product.name.toLowerCase().includes(searchValue.toLowerCase())
+      product.productName.toLowerCase().includes(searchValue.toLowerCase())
     ));
 
     this.setState({ displayedProducts: filteredProducts })
@@ -86,7 +56,7 @@ class App extends Component {
       <Switch>
         <Route
           exact
-          path="/teste/:id"
+          path="/"
           render={props => <Home {...props} products={this.state.displayedProducts} addToChart={this.addToChart} filterMethod={this.filterProducts} />}
         />
         <Route
