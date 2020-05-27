@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Slider, Button } from 'antd';
-import Text from '../Text/Text';
+import { Text } from '../../atoms';
+
 
 const { Meta } = Card;
 
@@ -22,7 +23,7 @@ class ProductCard extends Component {
       <Card
         hoverable
         style={{ width: 300 }}
-        cover={<img alt={productName && productName.toLowerCase().split(' ').join('-')} src={productImage} />}
+        cover={<img alt={productName && productName.toLowerCase().split(' ').join('-')} src={productImage} height="300px" />}
       >
         <Meta title={productName} description={`Price: R$ ${productPrice}`} />
         {

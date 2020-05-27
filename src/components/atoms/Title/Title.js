@@ -1,10 +1,11 @@
 import React from 'react';
 import './Title.css';
+import { Title as TitleBase } from './Title.styles';
 
 const Title = ({ htmlType, children, styles }) => {
   switch (htmlType) {
     case "H1":
-      return <h1 className={styles && styles.join(' ')}>{children}</h1>;
+      return <TitleBase styles={styles}>{children}</TitleBase>;
     case "H2":
       return <h2 className={styles && styles.join(' ')}>{children}</h2>;
     case "H3":
