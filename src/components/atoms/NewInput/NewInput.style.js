@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Form, Input as InputAntd } from 'antd';
-import ReactInputMask from 'react-input-mask';
+import InputWithMask from 'react-input-mask';
 
 const { Item } = Form;
 
 export const InputBase = styled(Item)``;
 
-export const InputNormal = styled(InputAntd)``;
+export const InputText = styled(InputAntd)``;
 
-export const InputMask = styled(ReactInputMask)``;
+export const InputMasked = styled(InputWithMask)``;
