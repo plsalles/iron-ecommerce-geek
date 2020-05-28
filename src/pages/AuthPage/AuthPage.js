@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AuthTemplate } from '../../templates';
+import { AuthForm } from '../../components/atoms';
 
 class AuthPage extends Component {
 
@@ -10,7 +11,11 @@ class AuthPage extends Component {
   render() {
    
     return (
-      <AuthTemplate />
+      <AuthTemplate>
+          <div className='form-align'>
+              <AuthForm />
+          </div>
+      </AuthTemplate> 
     );
 
   }

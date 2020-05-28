@@ -6,16 +6,14 @@ import { Layout } from 'antd';
 
 const { Header, Content } = Layout;
 
-function AuthTemplate () {
+function AuthTemplate ({children}) {
 
     return (
         <div>
             <Layout>
                 <Header className='header-container'></Header>
                 <Content className='content-container'>
-                    <div className='form-align'>
-                        <AuthForm />
-                    </div>
+                    {children}
                 </Content>
             </Layout>
         </div>
