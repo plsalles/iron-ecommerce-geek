@@ -1,0 +1,14 @@
+.welcome-message {
+    color: blue;
+}
+
+.form-align {
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.container-form-atom {
+    overflow: hidden;
+
+}

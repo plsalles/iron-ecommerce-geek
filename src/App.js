@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import ApiService from './api/service';
-import { Home, SecondPage } from './pages';
+import { Home, SecondPage, AuthPage } from './pages';
 
 class App extends Component {
   constructor() {
@@ -63,6 +63,11 @@ class App extends Component {
           exact
           path="/new-route"
           render={props => <SecondPage {...props} loggedUser={this.state.loggedUser} />}
+        />
+         <Route
+          exact
+          path="/auth-route"
+          render={props => <AuthPage />}
         />
       </Switch>
     );
