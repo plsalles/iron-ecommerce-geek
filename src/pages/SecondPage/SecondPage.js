@@ -1,14 +1,14 @@
 import React from 'react';
-import { GeneralTemplate } from '../../templates';
+import { FormTemplate } from '../../templates';
 import { Redirect } from 'react-router-dom';
 import { Form } from '../../components/molecules';
 
 const SecondPage = ({ loggedUser }) => {
   return loggedUser ? (
-    <GeneralTemplate>
+    <FormTemplate>
       NOSSO NOVO CONTEUDO
       <Form />
-    </GeneralTemplate>
+    </FormTemplate>
   ) : <Redirect to="/teste/NAO-AUTORIZADO!" />;
 };
 
