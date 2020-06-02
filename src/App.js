@@ -2,28 +2,51 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import ApiService from './api/service';
-import { Home, SecondPage } from './pages';
+import { ProtectedRoute } from './components/authentication';
+import { Home, Signup, Login, EditUserProfile } from './pages';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      userInfo: {},
       products: [],
       displayedProducts: [],
       chart: {
         products: [],
       },
-      loggedUser: true,
+      loggedUser: null,
     };
+
+    this.verifyLoggedUser();
   }
 
-  async componentDidMount() {
-    const products = await ApiService.listProducts();
+  verifyLoggedUser = async () => {
+    const loggedUserInfo = localStorage.getItem('logged-user-info');
 
+    // eslint-disable-next-line react/no-direct-mutation-state
+    if (loggedUserInfo) {
+      this.state.loggedUser = true;
+    }
+  };
+
+  async componentDidMount() {
+    try {
+      const products = await ApiService.listProducts();
+
+      this.setState({
+        products,
+        displayedProducts: products,
+      });
+    } catch (error) {
+      console.log('ERROOOOOOOOOO')
+    }
+  }
+
+  logUser = () => {
     this.setState({
-      products,
-      displayedProducts: products,
-    });
+      loggedUser: true,
+    }, () => console.log(this.state));
   }
 
   addToChart = (productQuantity, productName, productPrice, productImage) => {
@@ -51,7 +74,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('RENDER DO APP CHAMADO!!')
+    console.log('RENDER DO APP CHAMADO!!', this.state)
     return (
       <Switch>
         <Route
@@ -61,8 +84,22 @@ class App extends Component {
         />
         <Route
           exact
-          path="/new-route"
-          render={props => <SecondPage {...props} loggedUser={this.state.loggedUser} />}
+          path="/signup"
+          render={props => <Signup {...props} />}
+        />
+
+        <Route
+          exact
+          path="/login"
+          render={props => <Login {...props} logUser={this.logUser} />}
+        />
+
+        <ProtectedRoute
+          exact
+          path="/edit-profile"
+          loggedUser={this.state.loggedUser}
+          component={EditUserProfile}
+          userInfo={this.state.userInfo}
         />
       </Switch>
     );

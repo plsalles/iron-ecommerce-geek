@@ -52,7 +52,8 @@ class GeneralTemplate extends React.Component {
               onClick: this.toggle,
             })}
             <Link to="/">Home</Link>
-            <Link to="/new-route">New Route</Link>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
           </Header>
           <Content
             className="site-layout-background"

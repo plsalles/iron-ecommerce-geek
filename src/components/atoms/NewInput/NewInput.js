@@ -3,7 +3,7 @@ import { InputBase, InputText, InputMasked } from './NewInput.style';
 
 
 const NewInput = ({
-  name, label, mask, value, isLoading, handleChange, handleBlur, placeholder, error, touched,
+  name, label, mask, value, type, isLoading, handleChange, handleBlur, placeholder, error, touched,
 }) => {
   const hasMask = !!mask;
   const hasError = !!error;
@@ -21,6 +21,7 @@ const NewInput = ({
           className="ant-input"
           mask={mask}
           maskChar={null}
+          defaultValue={value}
           value={value}
           disabled={isLoading}
           onChange={handleChange}
@@ -29,11 +30,13 @@ const NewInput = ({
         />
     ) : (
         <InputText
+          defaultValue={value}
           value={value}
           disabled={isLoading}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder={placeholder}
+          type={type || 'text'}
         />
       )}
     </InputBase>

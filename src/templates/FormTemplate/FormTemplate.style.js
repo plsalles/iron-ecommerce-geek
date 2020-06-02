@@ -7,7 +7,7 @@ export const Layout = styled(LayoutBase)`
     background-image: url(../images/background.png);
     background-position: top;
     background-repeat: no-repeat;
-    background-size: unset;
+    background-size: 100vw 350px;
 `;
 
 export const Content = styled(LayoutBase.Content)`
