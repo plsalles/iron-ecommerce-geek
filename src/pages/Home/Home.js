@@ -5,14 +5,7 @@ import { HomeContent } from '../../components/organisms';
 import { FormSearchProducts } from '../../components/molecules';
 
 class Home extends Component {
-
-  componentWillUnmount() {
-    console.log('COMPONENTE HOME SENDO DESMONTADO!')
-  }
-
   render() {
-    console.log(this.props.match.params)
-
     return (
       <GeneralTemplate>
         <Row gutter={24}>
@@ -28,7 +21,6 @@ class Home extends Component {
         <HomeContent products={this.props.products} addToChart={this.props.addToChart}/>
       </GeneralTemplate>
     );
-
   }
 };
 

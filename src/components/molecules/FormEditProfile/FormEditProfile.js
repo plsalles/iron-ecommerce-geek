@@ -3,6 +3,7 @@ import formSchema from './FormEditProfile.schema';
 import { FormWrapper } from './FormEditProfile.style';
 import { NewInput, Button } from '../../atoms';
 import ApiService from '../../../api/service';
+import { Skeleton } from 'antd';
 
 class FormEditProfile extends Component {
   state = {
@@ -36,11 +37,9 @@ class FormEditProfile extends Component {
         initialValues={this.state.initialState}
         validationSchema={formSchema}
         onSubmit={this.onSubmitMethod}
-        enableReinitialize
       >
         {({ values, errors, touched, isSubmitting, handleChange, handleBlur, handleSubmit, ...props }) => (
           <form onSubmit={handleSubmit}>
-            {console.log(values)}
             <NewInput
               {...props}
               name="name"
@@ -103,7 +102,9 @@ class FormEditProfile extends Component {
           </form>
         )}
       </FormWrapper>
-    ) : <h1>Carregando</h1>;
+    ) : (
+      <Skeleton active/>
+    )
   }
 }
 

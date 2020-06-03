@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import formSchema from './FormLogin.schema';
 import { FormWrapper } from './FormLogin.style';
 import { NewInput, Button } from '../../atoms';
 import ApiService from '../../../api/service';
 
 const FormLogin = ({ logUser, ...props }) => {
+  const [loginApiErrorMessage, setLoginApiErrorMessage] = useState('');
   const initialState = {
     email: '',
     password: '',
   };
 
   const onSubmitLogin = async (values, action) => {
-    console.log(values);
-
-    const logged = await ApiService.loginUser(values);
-
-    logUser();
-
-    localStorage.setItem('logged-user-info', JSON.stringify(logged));
-
-    action.setSubmitting(false);
-
-    props.history.push('/edit-profile');
+    try {
+      const logged = await ApiService.loginUser(values);
+  
+      logUser();
+  
+      localStorage.setItem('logged-user-info', JSON.stringify(logged));
+  
+      action.setSubmitting(false);
+  
+      props.history.push('/edit-profile');
+    } catch (err) {
+      setLoginApiErrorMessage(err.response.data.message);
+    }
   };
 
   return (
@@ -38,7 +41,7 @@ const FormLogin = ({ logUser, ...props }) => {
             label="Email"
             placeholder="Digite seu email"
             value={values.email}
-            error={errors.email}
+            error={errors.email || (loginApiErrorMessage && true)}
             touched={touched.email}
             handleChange={handleChange}
             handleBlur={handleBlur}
@@ -52,7 +55,7 @@ const FormLogin = ({ logUser, ...props }) => {
             type="password"
             placeholder="Digite sua senha de acesso"
             value={values.password}
-            error={errors.password}
+            error={errors.password || loginApiErrorMessage}
             touched={touched.password}
             handleChange={handleChange}
             handleBlur={handleBlur}

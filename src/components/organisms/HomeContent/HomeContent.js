@@ -18,7 +18,6 @@ const HomeContent = ({ products, addToChart }) => {
         </Col>
       );
     });
-    console.log('HOME CONTENT MONTADO!!!', products.length)
 
     return products.length === 0 ? <Skeleton active /> : (
       <Row gutter={24}>
@@ -26,8 +25,7 @@ const HomeContent = ({ products, addToChart }) => {
       </Row>
     )
   };
-  
-  console.log(products)
+
   return (
     <div>
       {displayProducts(products)}

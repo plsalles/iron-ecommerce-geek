@@ -39,14 +39,14 @@ class App extends Component {
         displayedProducts: products,
       });
     } catch (error) {
-      console.log('ERROOOOOOOOOO')
+      // redirecionar para uma rota de erro???
     }
   }
 
   logUser = () => {
     this.setState({
       loggedUser: true,
-    }, () => console.log(this.state));
+    });
   }
 
   addToChart = (productQuantity, productName, productPrice, productImage) => {
@@ -60,8 +60,6 @@ class App extends Component {
 
     this.setState({
       chart: newChart,
-    }, () => {
-      console.log(this.state.chart)
     });
   };
 
@@ -74,7 +72,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('RENDER DO APP CHAMADO!!', this.state)
     return (
       <Switch>
         <Route

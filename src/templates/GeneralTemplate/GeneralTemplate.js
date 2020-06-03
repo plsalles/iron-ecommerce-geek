@@ -22,13 +22,7 @@ class GeneralTemplate extends React.Component {
     });
   };
 
-  componentDidMount() {
-    console.log('DID MOUNT DO GENERAL TEMPLATE CHAMADO!!')
-  }
-
   render() {
-    console.log('RENDER DO GENERAL TEMPLATE CHAMADO!!')
-
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>

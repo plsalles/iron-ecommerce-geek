@@ -13,8 +13,6 @@ const FormSignup = props => {
   };
 
   const onSubmitMethod = async (values, actions) => {
-    console.log(values);
-
     await ApiService.subscribeUser(values);
     actions.setSubmitting(false);
 
