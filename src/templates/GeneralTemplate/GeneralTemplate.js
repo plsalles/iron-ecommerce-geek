@@ -22,13 +22,7 @@ class GeneralTemplate extends React.Component {
     });
   };
 
-  componentDidMount() {
-    console.log('DID MOUNT DO GENERAL TEMPLATE CHAMADO!!')
-  }
-
   render() {
-    console.log('RENDER DO GENERAL TEMPLATE CHAMADO!!')
-
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -52,7 +46,8 @@ class GeneralTemplate extends React.Component {
               onClick: this.toggle,
             })}
             <Link to="/">Home</Link>
-            <Link to="/new-route">New Route</Link>
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
           </Header>
           <Content
             className="site-layout-background"
